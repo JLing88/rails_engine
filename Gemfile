@@ -16,6 +16,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'pry'
+  gem "shoulda-matchers"
+  gem 'simplecov'
 end
 
 group :development do
