@@ -8,5 +8,4 @@ class Api::V1::Customers::FindController < ApplicationController
   def customer_params
     params.permit(:id, :first_name, :last_name, :updated_at, :created_at)
   end
-
 end
