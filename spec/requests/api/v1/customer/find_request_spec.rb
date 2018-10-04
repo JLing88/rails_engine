@@ -100,6 +100,21 @@ describe "Customers Find API" do
   end
 
   context 'find_all params' do
+    it 'finds all customers by id' do
+      id = create(:customer).id
+      create(:customer)
+      create(:customer)
+      create(:customer)
+      create(:customer)
+
+      get "/api/v1/customers/find_all?id=#{id}"
+
+      customers = JSON.parse(response.body)
+
+      expect(response).to be_successful
+      expect(customers.count).to eq(1)
+    end
+
     it 'finds all customers by first_name' do
       first_name = create(:customer).first_name
       create(:customer)
@@ -114,6 +129,7 @@ describe "Customers Find API" do
       expect(response).to be_successful
       expect(customers.count).to eq(4)
     end
+    
     it 'finds all customers by last_name' do
       last_name = create(:customer).last_name
       create(:customer)
