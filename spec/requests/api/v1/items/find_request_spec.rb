@@ -168,7 +168,6 @@ describe "Items Find API" do
 
       expect(response).to be_successful
       expect(items.count).to eq(2)
-      
     end
   end
 end
