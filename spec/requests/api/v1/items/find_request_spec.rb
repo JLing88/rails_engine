@@ -46,6 +46,18 @@ describe "Items Find API" do
       expect(item["unit_price"]).to eq(unit_price)
     end
 
+    it 'finds an item by merchant_id' do
+      merchant = create(:merchant)
+      id = create(:item, merchant_id: merchant.id).merchant_id
+
+      get "/api/v1/items/find?merchant=#{merchant.id}"
+
+      item = JSON.parse(response.body)
+
+      expect(response).to be_successful
+      expect(item["id"]).to eq(id)
+    end
+
     it 'finds an item by created_at' do
       item = create(:item, created_at: "2018-10-3")
       date = item.created_at
@@ -117,17 +129,46 @@ describe "Items Find API" do
     end
 
     it 'finds all items by merchant_id' do
-      create(:item, unit_price: 100)
-      create(:item, unit_price: 100)
-      create(:item, unit_price: 200)
-      create(:item, unit_price: 200)
+      merch_1 = create(:merchant)
+      merch_2 = create(:merchant)
+      create(:item, merchant_id: merch_1.id)
+      create(:item, merchant_id: merch_1.id)
+      create(:item, merchant_id: merch_2.id)
+      create(:item, merchant_id: merch_2.id)
 
-      get "/api/v1/items/find_all?unit_price=200"
+      get "/api/v1/items/find_all?merchant_id=#{merch_1.id}"
 
       items = JSON.parse(response.body)
 
       expect(response).to be_successful
       expect(items.count).to eq(2)
+    end
+
+    it 'finds all items by created_at' do
+      date = create(:item, created_at: "2018-10-2").created_at
+      create(:item, created_at: "2018-10-2")
+      create(:item, created_at: "2018-10-3")
+
+      get "/api/v1/items/find_all?created_at=#{date}"
+
+      items = JSON.parse(response.body)
+
+      expect(response).to be_successful
+      expect(items.count).to eq(2)
+    end
+
+    it 'finds all items by updated_at' do
+      date = create(:item, updated_at: "2018-10-2").updated_at
+      create(:item, updated_at: "2018-10-2")
+      create(:item, updated_at: "2018-10-3")
+
+      get "/api/v1/items/find_all?updated_at=#{date}"
+
+      items = JSON.parse(response.body)
+
+      expect(response).to be_successful
+      expect(items.count).to eq(2)
+      
     end
   end
 end
