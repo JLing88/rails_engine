@@ -50,6 +50,20 @@ describe "Merchants Find API" do
   end
 
   context "find_all params" do
+    it 'finds all merchants by id' do
+      id = create(:merchant).id
+      create(:merchant)
+      create(:merchant, name: "Google")
+      create(:merchant, name: "Microsoft")
+
+      get "/api/v1/merchants/find_all?id=#{id}"
+
+      merchants = JSON.parse(response.body)
+
+      expect(response).to be_successful
+      expect(merchants.count).to eq(1)
+    end
+
     it 'finds all merchants by name' do
       name = create(:merchant).name
       create(:merchant)
