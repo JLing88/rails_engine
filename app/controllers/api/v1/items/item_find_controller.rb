@@ -1,4 +1,4 @@
-class Api::V1::Items::FindController < ApplicationController
+class Api::V1::Items::ItemFindController < ApplicationController
   def index
     render json: Item.where(item_params)
   end

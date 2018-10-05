@@ -3,11 +3,12 @@ require 'rails_helper'
 describe "Merchant Relationships API" do
   it 'finds all associated items for a merchant' do
     merchant = create(:merchant)
+    merchant_2 = create(:merchant)
     id = merchant.id
 
     items = [create(:item), create(:item), create(:item)]
 
-    create_list(:item, 3)
+    create_list(:item, 3, merchant: merchant_2)
 
     merchant.items << items
 

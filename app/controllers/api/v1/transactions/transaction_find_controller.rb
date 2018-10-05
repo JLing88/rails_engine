@@ -1,4 +1,4 @@
-class Api::V1::Transactions::FindController < ApplicationController
+class Api::V1::Transactions::TransactionFindController < ApplicationController
   def show
     render json: Transaction.find_by(transaction_params)
   end
@@ -10,6 +10,7 @@ class Api::V1::Transactions::FindController < ApplicationController
   private
   def transaction_params
     params.permit(:id,
+                  :invoice_id,
                   :credit_card_number,
                   :result,
                   :created_at,
