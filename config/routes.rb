@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       end
 
       namespace :merchants do
-        get '/find', to: 'find#show'
+        get '/find', to: 'merchant_find#show'
         get '/find_all', to: 'merchant_find#index'
         get '/random', to: 'merchant_random#show'
       end
@@ -20,8 +20,8 @@ Rails.application.routes.draw do
       end
 
       namespace :items do
-        get '/find', to: 'find#show'
-        get '/find_all', to: 'find#index'
+        get '/find', to: 'items_find#show'
+        get '/find_all', to: 'items_find#index'
       end
       resources :items, only: [:index, :show]
 
