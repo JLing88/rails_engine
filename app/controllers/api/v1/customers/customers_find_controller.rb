@@ -1,4 +1,4 @@
-class Api::V1::Customers::CustomerFindController < ApplicationController
+class Api::V1::Customers::CustomersFindController < ApplicationController
   def index
     render json: Customer.where(customer_params)
   end
