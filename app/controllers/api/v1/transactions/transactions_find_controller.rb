@@ -1,4 +1,4 @@
-class Api::V1::Transactions::TransactionFindController < ApplicationController
+class Api::V1::Transactions::TransactionsFindController < ApplicationController
   def show
     render json: Transaction.find_by(transaction_params)
   end
