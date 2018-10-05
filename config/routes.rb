@@ -20,26 +20,26 @@ Rails.application.routes.draw do
       end
 
       namespace :items do
-        get '/find', to: 'items_find#show'
-        get '/find_all', to: 'items_find#index'
+        get '/find', to: 'item_find#show'
+        get '/find_all', to: 'item_find#index'
       end
       resources :items, only: [:index, :show]
 
       namespace :invoices do
-        get '/find', to: 'find#show'
-        get '/find_all', to: 'find#index'
+        get '/find', to: 'invoice_find#show'
+        get '/find_all', to: 'invoice_find#index'
       end
       resources :invoices, only: [:index, :show]
 
       namespace :invoice_items do
-        get '/find', to: 'find#show'
-        get '/find_all', to: 'find#index'
+        get '/find', to: 'invoice_item_find#show'
+        get '/find_all', to: 'invoice_item_find#index'
       end
       resources :invoice_items, only: [:index, :show]
 
       namespace :transactions do
-        get '/find', to: 'find#show'
-        get '/find_all', to: 'find#index'
+        get '/find', to: 'transaction_find#show'
+        get '/find_all', to: 'transaction_find#index'
       end
       resources :transactions, only: [:index, :show]
     end

@@ -1,4 +1,4 @@
-class Api::V1::InvoiceItems::FindController < ApplicationController
+class Api::V1::InvoiceItems::InvoiceItemFindController < ApplicationController
   def index
     render json: InvoiceItem.where(invoice_item_params)
   end
