@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       namespace :customers do
         get '/find', to: 'customers_find#show'
         get '/find_all', to: 'customers_find#index'
+        get '/random', to: 'customers_random#show'
       end
       resources :customers, only: [:index, :show] do
         get '/transactions', to: 'customers/transactions#index'
