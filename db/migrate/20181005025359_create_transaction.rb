@@ -1,4 +1,4 @@
-class CreateTransactions < ActiveRecord::Migration[5.1]
+class CreateTransaction < ActiveRecord::Migration[5.1]
   def change
     create_table :transactions do |t|
       t.references :invoice, foreign_key: true
