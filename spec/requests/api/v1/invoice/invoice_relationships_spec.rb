@@ -69,6 +69,6 @@ describe "Invoice Relationships API" do
     invoice_customer = JSON.parse(response.body)
 
     expect(response).to be_successful
-    expect(invoice_customer.id).to eq(customer.id)
+    expect(invoice_customer["id"]).to eq(customer.id)
   end
 end
