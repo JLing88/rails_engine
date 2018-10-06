@@ -14,6 +14,6 @@ class Customer < ApplicationRecord
             .where("transactions.result = ?", "success")
             .group("merchants.id")
             .order(count: :desc)
-            .limit(1)
+            .limit(1).first
   end
 end
