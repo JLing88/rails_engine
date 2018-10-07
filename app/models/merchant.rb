@@ -9,19 +9,26 @@ class Merchant < ApplicationRecord
 
   def self.most_revenue(number = 5)
     select("merchants.*, sum(invoice_items.unit_price * invoice_items.quantity) as revenue_sum")
-            .joins(invoices: [:invoice_items, :transactions])
-            .group(:id)
-            .order("revenue_sum desc")
-            .where("transactions.result = ?", "success")
-            .limit(number)
+      .joins(invoices: [:invoice_items, :transactions])
+      .group(:id)
+      .order("revenue_sum desc")
+      .where("transactions.result = ?", "success")
+      .limit(number)
   end
 
   def self.most_items(number = 5)
     select("merchants.*, sum(invoice_items.quantity) as items_count")
-            .joins(invoices: [:invoice_items, :transactions])
-            .group(:id)
-            .order("items_count desc")
-            .where("transactions.result = ?", "success")
-            .limit(number)
+      .joins(invoices: [:invoice_items, :transactions])
+      .group(:id)
+      .order("items_count desc")
+      .where("transactions.result = ?", "success")
+      .limit(number)
+  end
+
+  def self.revenue_by_date(date)
+    Invoice.select("sum(invoice_items.quantity * invoice_items.unit_price) as revenue")
+      .joins(:invoice_items, :transactions)
+      .where(invoices: {updated_at: date.to_date.all_day})
+      .where("transactions.result = ?", "success")
   end
 end
