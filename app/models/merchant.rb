@@ -31,4 +31,12 @@ class Merchant < ApplicationRecord
       .where(invoices: {updated_at: date.to_date.all_day})
       .where("transactions.result = ?", "success")
   end
+
+  def self.revenue(merchant_id)
+    find(merchant_id).invoices
+      .joins(:invoice_items, :transactions)
+      .where("transactions.result = ?", "success")
+      .sum("invoice_items.quantity * invoice_items.unit_price) as revenue")
+  end
+
 end
