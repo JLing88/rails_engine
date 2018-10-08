@@ -1,6 +1,6 @@
 # README
 
-Rails Engine is a Rails API which serves up data from an online shopping platform. The data includes sales information about Merchants, Customers, Items, Invoices, and Transactions. There is a plethora of one-to-many and many-to-many relationships. The controller setup follows a RESTful design and all controllers only allow for `show` and `index` methods.
+Rails Engine is a `Rails API` which serves up data from an online shopping platform. The data includes sales information about Merchants, Customers, Items, Invoices, and Transactions. There is a plethora of one-to-many and many-to-many relationships. The controller setup follows a RESTful design and all controllers only allow for `show` and `index` methods. The testing suite is built in `RSpec`.
 
 ## Getting the application set up on your machine
 
