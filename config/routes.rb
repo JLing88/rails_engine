@@ -18,10 +18,13 @@ Rails.application.routes.draw do
         get '/random',       to: 'merchants_random#show'
         get '/most_revenue', to: 'merchants_top_revenue#index'
         get '/most_items',   to: 'merchants_most_items#index'
+        get '/revenue',      to: 'merchants_revenue#show'
       end
+
       resources :merchants, only: [:index, :show] do
         get '/items', to: 'merchants/items#index'
         get '/invoices', to: 'merchants/invoices#show'
+        get '/revenue', to: 'merchants/single_revenue#show'
       end
 
       namespace :items do
